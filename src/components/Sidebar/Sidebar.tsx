@@ -10,7 +10,7 @@ export const Sidebar = () => {
                 <p className={styles.sidebar__personal_name}>Sergey.Ivanov</p>
                 <div className={styles.sidebar__icon}>
                     <svg>
-                        <use href="img/icon/sprite.svg#logout"></use>
+                        <use href="/img/icon/sprite.svg#logout"></use>
                     </svg>
                 </div>
             </div>
@@ -20,7 +20,7 @@ export const Sidebar = () => {
                         <Link className={styles.sidebar__link} href="#">
                             <Image
                                 className={styles.sidebar__img}
-                                src="img/playlist01.png"
+                                src="/img/playlist01.png"
                                 alt="day's playlist"
                                 width={250}
                                 height={150}
@@ -31,7 +31,7 @@ export const Sidebar = () => {
                         <Link className={styles.sidebar__link} href="#">
                             <Image
                                 className={styles.sidebar__img}
-                                src="img/playlist02.png"
+                                src="/img/playlist02.png"
                                 alt="day's playlist"
                                 width={250}
                                 height={150}
@@ -42,7 +42,7 @@ export const Sidebar = () => {
                         <Link className={styles.sidebar__link} href="#">
                             <Image
                                 className={styles.sidebar__img}
-                                src="img/playlist03.png"
+                                src="/img/playlist03.png"
                                 alt="day's playlist"
                                 width={250}
                                 height={150}
