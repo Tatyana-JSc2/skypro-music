@@ -5,6 +5,7 @@ import { sortData } from "../Sort/data";
 import styles from "./Filter.module.css";
 //import classNames from 'classnames';
 import { TrackType } from "@/types/types";
+import { getUniqueValues } from "@/utils/utils";
 
 
 type Props = {
@@ -18,16 +19,7 @@ export const Filter = ({ tracks }: Props) => {
         setFilterValue((prev) => prev === value ? null : value);
     }
 
-    function Unique(value: string) {
-        if (value === "author") {
-            return Array.from(new Set(tracks.map((track) => track.author)));
-        } else if (value === "genre") {
-            return Array.from(new Set(tracks.map((track) => track.genre)));
-        } else {
-            return Array.from(new Set(tracks.map((track) => track.release_date)));
-        }
-    }
-
+   
     return (
         <div className={styles.centerblockFilter}>
             <div className={styles.filterTitle}>Искать по:</div>
@@ -35,7 +27,7 @@ export const Filter = ({ tracks }: Props) => {
                 <Sort
                     key={index}
                     title={item.title}
-                    list={Unique(item.value)}
+                    list={getUniqueValues({value: item.value,tracks })}
                     onClick={changeFilter}
                     value={item.value}
                     isOpen={filterValue === item.value}

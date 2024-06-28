@@ -27,6 +27,12 @@
     cursor: pointer;
 }
 
+.btnTextActiv{
+    border-color: #ad61ff;
+    color: #ad61ff;
+    cursor: pointer;
+}
+
 .filterButtonBox{
     position: relative;
 }

@@ -12,7 +12,7 @@ type Props = {
 const Sort = ({ title, list, onClick, value, isOpen }: Props) => {
     return (
         <div className={styles.filterButtonBox}>
-            <button className={classNames(styles.filterButton, styles.btnText)} onClick={() => onClick(value)}>
+            <button className={classNames(styles.filterButton, styles.btnText, isOpen && styles.btnTextActiv)} onClick={() => onClick(value)}>
                 {title}
             </button>
             {isOpen &&
