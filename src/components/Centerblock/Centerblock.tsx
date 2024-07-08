@@ -1,14 +1,25 @@
-//"use client";
+'use client';
 import Link from "next/link";
 import styles from "./Centerblock.module.css";
 import classNames from 'classnames';
 //import { useEffect, useState } from "react";
 import { getTracks } from "@/api/userApi";
-import { TrackType } from "@/types/types";
+//import { TrackType } from "@/types/types";
 import { Filter } from "../Filter/Filter";
 import { Search } from "../Search/Search";
+import { TrackType } from "@/types/types";
 
-export const Centerblock = async () => {
+
+type Props = {
+    tracks: TrackType[];  
+    setTrack: (item: null|TrackType) => void;   
+  }
+  //type Prop = {
+  //  setTrack: (item: null|TrackType) => void;   
+  //}
+
+
+export const Centerblock = ({tracks, setTrack}:Props) => {
 
     //const [tracks, setTracks]=useState([]);
 
@@ -20,7 +31,7 @@ export const Centerblock = async () => {
     //    });
     //},[]);
 
-    const tracks: TrackType[] = await getTracks();
+   // const tracks: TrackType[] = await getTracks();
     //console.log(Tracks); // т.к. компонент серверный, эту строчку в браузере мы не увидим, а увидим на сервере(в terminal)
 
     return (
@@ -42,7 +53,7 @@ export const Centerblock = async () => {
                 <div className={styles.contentPlaylist}>
                     {tracks.map((item, index: number) => {
                         return (
-                            <div className={styles.playlist__item} key={index}>
+                            <div className={styles.playlist__item} key={index} onClick={() => setTrack(item)}>
                                 <div className={styles.playlist__track}>
                                     <div className={styles.track__title}>
                                         <div className={styles.track__title_image}>

@@ -19,7 +19,7 @@ export const Filter = ({ tracks }: Props) => {
         setFilterValue((prev) => prev === value ? null : value);
     }
 
-   
+
     return (
         <div className={styles.centerblockFilter}>
             <div className={styles.filterTitle}>Искать по:</div>
@@ -27,7 +27,7 @@ export const Filter = ({ tracks }: Props) => {
                 <Sort
                     key={index}
                     title={item.title}
-                    list={getUniqueValues({value: item.value,tracks })}
+                    list={getUniqueValues({ value: item.value, tracks })}
                     onClick={changeFilter}
                     value={item.value}
                     isOpen={filterValue === item.value}
