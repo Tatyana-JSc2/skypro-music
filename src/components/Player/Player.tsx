@@ -23,7 +23,7 @@ export const Player = ({ track }: Props) => {
 
   const duration = audioRef.current?.duration || 0;
 
-  //функция для воспроизведения и паузы
+  // функция для воспроизведения и паузы
   const togglePlay = () => {
     // const audio = audioRef.current;
     if (audioRef.current) {
