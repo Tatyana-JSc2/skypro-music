@@ -4,6 +4,7 @@ import styles from "./Player.module.css";
 import classNames from 'classnames';
 import { TrackType } from "@/types/types";
 import { useEffect, useRef, useState } from "react";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 
 type Props = {
@@ -50,6 +51,16 @@ export const Player = ({ track }: Props) => {
     if (audioRef.current) audioRef.current.loop = !isLoop;
   };
 
+  //передвижение ползунка
+  const handleSeek = (event: any) => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = event.target.value;
+    }
+  };
+
+  const notYet = () => {
+    alert("еще не реализовано!");
+  };
 
 
   useEffect(() => {
@@ -77,36 +88,42 @@ export const Player = ({ track }: Props) => {
           ref={audioRef}
           src={track?.track_file}
         />
-        {/*<div className={styles.barTime}>
-         {timer(currentTime)}/{timer(duration)}
-        </div>*/}
-        <div className={styles.bar__player_progress} /*max={duration} value={currentTime} step={0.01} onChange={(e)=>(audioRef.current?.currentTime=Number(e.target.value))}*/></div>
+        <div className={styles.barTime}>
+          {currentTime} / {duration}
+        </div>
+        {/*<div className={styles.bar__player_progress} max={duration} value={currentTime} step={0.01} onChange={(e)=>(audioRef.current?.currentTime=Number(e.target.value))}></div>*/}
+        <ProgressBar
+          max={duration}
+          value={currentTime}
+          step={0.01}
+          onChange={handleSeek}
+        />
         <div className={styles.bar__player_block}>
           <div className={styles.bar__player}>
             <div className={styles.player__controls}>
               <div className={styles.player__btn_prev}>
                 <svg className={styles.player__btn_prev_svg}>
-                  <use href="/img/icon/sprite.svg#icon-prev"></use>
+                  <use href="/img/icon/sprite.svg#icon-prev" onClick={notYet}></use>
                 </svg>
               </div>
               <div className={classNames(styles.player__btn_play, styles._btn)}>
                 <svg className={styles.player__btn_play_svg}>
-                  <use href="/img/icon/sprite.svg#icon-play" onClick={togglePlay}></use>
+                  <use href={isPlaying ? "/img/icon/sprite.svg#icon-watch" : "/img/icon/sprite.svg#icon-play"} onClick={togglePlay}></use>
                 </svg>
               </div>
               <div className={styles.player__btn_next}>
                 <svg className={styles.player__btn_next_svg}>
-                  <use href="/img/icon/sprite.svg#icon-next"></use>
+                  <use href="/img/icon/sprite.svg#icon-next" onClick={notYet}></use>
                 </svg>
               </div>
               <div className={classNames(styles.player__btn_repeat, styles._btn_icon)}>
-                <svg className={styles.player__btn_repeat_svg}>
+                <svg className={isLoop === true ? styles._btn_iconActive : styles.player__btn_repeat_svg}>
                   <use href="/img/icon/sprite.svg#icon-repeat" onClick={handleLoop}></use>
                 </svg>
               </div>
               <div className={classNames(styles.player__btn_shuffle, styles._btn_icon)}>
                 <svg className={styles.player__btn_shuffle_svg}>
-                  <use href="/img/icon/sprite.svg#icon-shuffle"></use>
+                  <use href="/img/icon/sprite.svg#icon-shuffle" onClick={notYet}></use>
                 </svg>
               </div>
             </div>
@@ -131,13 +148,13 @@ export const Player = ({ track }: Props) => {
               <div className={styles.track_play__like_dis}>
                 <div className={classNames(styles.track_play__like, styles._btn_icon)}>
                   <svg className={styles.track_play__like_svg}>
-                    <use href="/img/icon/sprite.svg#icon-like"></use>
+                    <use href="/img/icon/sprite.svg#icon-like" onClick={notYet}></use>
                   </svg>
                 </div>
                 <div className={classNames(styles.track_play__dislike, styles._btn_icon)}>
                   <svg className={styles.track_play__dislike_svg}>
                     <use
-                      href="/img/icon/sprite.svg#icon-dislike"
+                      href="/img/icon/sprite.svg#icon-dislike" onClick={notYet}
                     ></use>
                   </svg>
                 </div>
@@ -156,6 +173,11 @@ export const Player = ({ track }: Props) => {
                   className={classNames(styles.volume__progress_line, styles._btn)}
                   type="range"
                   name="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={volume}
+                  onChange={(e: any) => setVolume(e.target.value)}
                 />
               </div>
             </div>

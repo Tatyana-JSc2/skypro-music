@@ -11,7 +11,6 @@ type Props = {
     tracks: TrackType[];
 }
 
-
 export const Main = ({ tracks }: Props) => {
     const [track, setTrack] = useState<null | TrackType>(null);
     return (

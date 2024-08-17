@@ -134,6 +134,14 @@
     stroke: #ffffff;
     cursor: pointer;
   }
+
+  ._btn_iconActive {
+    stroke: #ffffff;
+    width: 18px;
+    height: 12px;
+    fill: transparent;
+  }
+
   
   ._btn_icon:active .track-play__like-svg,
   ._btn_icon:active .track-play__dislike-svg {
@@ -319,6 +327,7 @@
   }
   
   .volume__progress_line {
+    height: 2px;
     width: 109px;
   }
   
