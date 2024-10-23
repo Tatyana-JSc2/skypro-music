@@ -16,10 +16,10 @@ const Sort = ({ title, list, onClick, value, isOpen }: Props) => {
                 {title}
             </button>
             {isOpen &&
-            <div className={styles.filterModal}>
-                <ul>
-                    {list.map((item, index) => <li key={index}>{item}</li>)}
-                </ul>
+                <div className={styles.filterModal}>
+                    <ul>
+                        {list.map((item, index) => <li key={index}>{item}</li>)}
+                    </ul>
                 </div>
             }
         </div>

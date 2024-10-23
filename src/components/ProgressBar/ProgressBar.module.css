@@ -2,7 +2,6 @@
     --progress-height: 5px;
     --progress-color: #b672ff;
     --progress-bg-color: #2e2e2e;
-    
   
     margin: 0;
     width: 100%;
@@ -14,8 +13,7 @@
     position: relative;
     overflow: hidden;
     transition: height 0.2s;
-  
-    background: linear-gradient(to right, var(--progress-color) var(--value), var(--progress-bg-color) var(--value));
+    background: linear-gradient( to right, var(--progress-color) var(--value), var(--progress-bg-color) var(--value));
   }
   
   /*var(--value)*/
@@ -28,6 +26,8 @@
   .styledProgressInput::-webkit-slider-runnable-track {
     height: var(--progress-height);
     background: var(--progress-bg-color);
+    /*background: var(--progress-color);*/
+    /*background-image: linear-gradient( to right, var(--progress-color) var(--value), var(--progress-bg-color) var(--value));*/
   }
   
   .styledProgressInput::-webkit-slider-thumb {
