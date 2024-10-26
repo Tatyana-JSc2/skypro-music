@@ -20,7 +20,7 @@ export const Player = ({ track }: Props) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
-
+  
 
   const duration = audioRef.current?.duration || 0;
 
