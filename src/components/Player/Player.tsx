@@ -20,7 +20,7 @@ export const Player = ({ track }: Props) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
-  
+
 
   const duration = audioRef.current?.duration || 0;
 
@@ -62,6 +62,13 @@ export const Player = ({ track }: Props) => {
     alert("еще не реализовано!");
   };
 
+  //формат времени проигрывания трека
+  function formatTime(seconds: number) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
+  }
+
 
   useEffect(() => {
     if (audioRef.current) {
@@ -89,7 +96,7 @@ export const Player = ({ track }: Props) => {
           src={track?.track_file}
         />
         <div className={styles.barTime}>
-          {currentTime} / {duration}
+          {formatTime(currentTime)} / {formatTime(duration)}
         </div>
         {/*<div className={styles.bar__player_progress} max={duration} value={currentTime} step={0.01} onChange={(e)=>(audioRef.current?.currentTime=Number(e.target.value))}></div>*/}
         <ProgressBar
@@ -108,7 +115,7 @@ export const Player = ({ track }: Props) => {
               </div>
               <div className={classNames(styles.player__btn_play, styles._btn)}>
                 <svg className={styles.player__btn_play_svg}>
-                  <use href={isPlaying ? "/img/icon/sprite.svg#icon-watch" : "/img/icon/sprite.svg#icon-play"} onClick={togglePlay}></use>
+                  <use href={isPlaying ? "/img/icon/sprite.svg#icon-pause" : "/img/icon/sprite.svg#icon-play"} onClick={togglePlay}></use>
                 </svg>
               </div>
               <div className={styles.player__btn_next}>

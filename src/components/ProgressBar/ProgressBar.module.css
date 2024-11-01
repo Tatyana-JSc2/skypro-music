@@ -1,5 +1,5 @@
 .styledProgressInput {
-    --progress-height: 5px;
+    --progress-height: 8px;
     --progress-color: #b672ff;
     --progress-bg-color: #2e2e2e;
     
@@ -16,9 +16,7 @@
     transition: height 0.2s;
     background: linear-gradient( to right, var(--progress-color) var(--value), var(--progress-bg-color) var(--value));
   }
-  .styledProgressPast{
-    --progress-bg-color:#b672ff;
-  }
+  
   
   /*var(--value)*/
   
@@ -27,17 +25,29 @@
   }
   
   /* Стили для WebKit браузеров */
+  
   .styledProgressInput::-webkit-slider-runnable-track {
     height: var(--progress-height);
     background: var(--progress-bg-color);
   }
+
+  /*   должно окрашивать дорожку до ползунка и после в разный цвет, но почему-то не работает
+  .styledProgressInput::-webkit-slider-runnable-track-piece:start {
+    height: var(--progress-height);
+    background: var(--progress-color);
+  }
+
+  .styledProgressInput::-webkit-slider-runnable-track-piece:end {
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+  }*/
   
   .styledProgressInput::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
-    height: 25px;
-    border-radius: 50%;
+    height: 8px;
+    border-radius: 5px;
     background: var(--progress-color);
   }
   
