@@ -79,6 +79,7 @@ export const Player = ({ track }: Props) => {
   }, [track]);
 
 
+
   //регулирование громкости
   useEffect(() => {
     if (audioRef.current) {
