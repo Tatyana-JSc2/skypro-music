@@ -324,11 +324,35 @@
   
   .volume__progress {
     width: 109px;
-    
+    display: flex;
+    align-items: center;
   }
   
   .volume__progress_line {
-    height: 2px;
+    height: 3px;
     width: 109px;
+    background: #ccc;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
   }
   
+  .volume__progress_line::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px;
+    height: 4px;
+    border-radius: 5px;
+    background: black;
+    box-shadow: 0 0 0 5px #ccc;
+  }
+
+  .volume__progress_line::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 4px;
+    height: 4px;
+    border-radius: 5px;
+    background: black;
+    box-shadow: 0 0 0 5px #ccc;
+  }

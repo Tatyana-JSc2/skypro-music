@@ -7,17 +7,19 @@
     margin: 0;
     width: 100%;
     height: var(--progress-height);
+    background: transparent;
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
-    background: transparent;
     position: relative;
     overflow: hidden;
     transition: height 0.2s;
     background: linear-gradient( to right, var(--progress-color) var(--value), var(--progress-bg-color) var(--value));
+    outline: none;
   }
-  
-  
+  /*background: linear-gradient( to right, var(--progress-color) var(--value), var(--progress-bg-color) var(--value));
+  background: transparent;
+  -webkit-appearance: none;
   /*var(--value)*/
   
   .styledProgressInput:hover {
@@ -26,7 +28,7 @@
   
   /* Стили для WebKit браузеров */
   
-  .styledProgressInput::-webkit-slider-runnable-track {
+ .styledProgressInput::-webkit-slider-runnable-track {
     height: var(--progress-height);
     background: var(--progress-bg-color);
   }
@@ -49,6 +51,7 @@
     height: 8px;
     border-radius: 5px;
     background: var(--progress-color);
+    box-shadow: -1008px 0 0 1000px #654883;
   }
   
   /* Стили для Firefox */
