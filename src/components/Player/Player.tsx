@@ -15,7 +15,6 @@ export const Player = () => {
   //const audioRef = useRef(null);
   //const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  //const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(0.5);
   const [isLoop, setIsLoop] = useState<boolean>(false);
 

@@ -29,8 +29,6 @@ export const Centerblock = ({ tracks }: Props) => {
         return Select;
     };
 
-    console.log(tracks);
-
     //const [tracks, setTracks]=useState([]);
 
     //useEffect(()=>{
