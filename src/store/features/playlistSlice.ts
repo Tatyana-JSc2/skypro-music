@@ -9,6 +9,7 @@ type PlaylistStateType = {
     isPlaying: boolean;
 }
 
+
 const initialState: PlaylistStateType = {
     currentTrack: null,
     playlist: [],
