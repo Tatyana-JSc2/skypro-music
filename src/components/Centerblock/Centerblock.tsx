@@ -34,6 +34,7 @@ export const Centerblock = ({tracks, setTrack}:Props) => {
    // const tracks: TrackType[] = await getTracks();
     //console.log(Tracks); // т.к. компонент серверный, эту строчку в браузере мы не увидим, а увидим на сервере(в terminal)
 
+    
     return (
         <div className={styles.mainCenterblock}>
             <Search />
