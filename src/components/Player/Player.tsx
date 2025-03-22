@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useEffect, useRef, useState } from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setIsPlaying, setIsShuffle, setNextTrack, setPlaylist, setPrevTrack } from "@/store/features/playlistSlice";
+import { setIsPlaying, setIsShuffle, setNextTrack, setPrevTrack, setPlaylist } from "@/store/features/playlistSlice";
 import { TrackType } from "@/types/types";
 
 
@@ -19,6 +19,7 @@ export const Player = () => {
   const [isLoop, setIsLoop] = useState<boolean>(false);
 
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  // const isFiltered = useAppSelector((state) => state.playlist.isFiltered);
   const playlist = useAppSelector((state) => state.playlist.playlist);
   const isShuffle = useAppSelector((state) => state.playlist.isShuffle);
   const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
@@ -64,9 +65,10 @@ export const Player = () => {
   //перемешивание треков
   const Shuffle = () => {
     isShuffle === false ? dispatch(setIsShuffle(true)) : dispatch(setIsShuffle(false));
+
   };
 
- 
+
   //передвижение ползунка
   const handleSeek = (event: any) => {
     if (audioRef.current) {
@@ -107,7 +109,7 @@ export const Player = () => {
         }
       };
     }
-  }, [currentTrack, playlist]);
+  }, [currentTrack, /*playlist*/]); /*трек запускается каждый раз, когда меняется плейлист!!!*/
 
 
   //регулирование громкости
@@ -116,6 +118,12 @@ export const Player = () => {
       audioRef.current.volume = volume;
     }
   }, [volume]);
+
+  //обновление плейлиста при нажатии перемешивания
+  useEffect(() => {
+    dispatch(setPlaylist());
+  }, [isShuffle]);
+
 
 
 

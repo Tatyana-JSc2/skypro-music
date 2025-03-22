@@ -2,7 +2,7 @@
 import { getTracks } from "@/api/userApi";
 import { Main } from "@/components/Main/Main";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setPlaylist } from "@/store/features/playlistSlice";
+import { setStartPlaylist } from "@/store/features/playlistSlice";
 import { TrackType } from "@/types/types";
 import { useEffect } from "react";
 
@@ -16,16 +16,21 @@ export default function Home() {
   // получение треков и перемешивание треков (изменение плейлиста)
   useEffect(() => {
     getTracks()
-      .then((tracks) => dispatch(setPlaylist({ tracks })))
+      .then((tracks) => dispatch(setStartPlaylist({ tracks })))
       .catch((error) => {
         alert(error.message);
       });
-  }, [isShuffle]);
+  }, [dispatch]);
 
+  const startTracks: TrackType[] = useAppSelector((state) => state.playlist.startPlaylist);
   const tracks: TrackType[] = useAppSelector((state) => state.playlist.playlist);
+
+ // useEffect(() => {
+ //   dispatch(setPlaylist({ tracks }));   
+ // }, [tracks, isShuffle]);
 
 
   return (
-    <Main tracks={tracks} />
+    <Main tracks={tracks} startTracks={startTracks}/>
   );
 }

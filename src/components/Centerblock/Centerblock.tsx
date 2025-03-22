@@ -12,22 +12,33 @@ import { setCurrentTrack } from "@/store/features/playlistSlice";
 
 type Props = {
     tracks: TrackType[];
+    startTracks: TrackType[];
 }
 //type Prop = {
 //  setTrack: (item: null|TrackType) => void;   
 //}
 
 
-export const Centerblock = ({ tracks }: Props) => {
+export const Centerblock = ({ tracks, startTracks }: Props) => {
 
     const dispatch = useAppDispatch();
     const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
     const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
+    // const filteredTracks = useAppSelector((state) => state.playlist.filteredTracks);
+    const isFiltered = useAppSelector((state) => state.playlist.isFiltered);
 
     const Selected = (item: TrackType) => {
         const Select = currentTrack ? currentTrack._id === item._id : false;
         return Select;
     };
+
+    /* const mainTracklist = () => {
+         if (isFiltered === true) {
+             return filteredTracks;
+         };
+         return tracks;
+         //отрисовывается отфильтрованный список треков, но в плеере работает основной!
+     }*/
 
     //const [tracks, setTracks]=useState([]);
 
@@ -46,7 +57,7 @@ export const Centerblock = ({ tracks }: Props) => {
         <div className={styles.mainCenterblock}>
             <Search />
             <h2 className={styles.centerblockHead}>Треки</h2>
-            <Filter tracks={tracks} />
+            <Filter tracks={startTracks} />
             <div className={styles.centerblockContent}>
                 <div className={styles.contentTitle}>
                     <div className={classNames(styles.playlistTCitleCol, styles.col01)}>Трек</div>
@@ -59,6 +70,7 @@ export const Centerblock = ({ tracks }: Props) => {
                     </div>
                 </div>
                 <div className={styles.contentPlaylist}>
+
                     {tracks.map((item, index: number) => {
                         return (
                             <div className={styles.playlist__item} key={index} onClick={() => dispatch(setCurrentTrack({ item, tracks }))} >
