@@ -11,12 +11,12 @@ type PlaylistStateType = {
     isPlaying: boolean;
     isFiltered: boolean;
     filterOptions: {
-       // author: string[],
+        // author: string[],
         clickFilter: string[],
         searchValue: string,
     };
-   // filteredTracks: TrackType[],
-    
+    // filteredTracks: TrackType[],
+
 }
 
 
@@ -30,7 +30,7 @@ const initialState: PlaylistStateType = {
     isPlaying: false,
     isFiltered: false,
     filterOptions: {
-       // author: [],
+        // author: [],
         clickFilter: [],
         searchValue: "",
     },
@@ -92,11 +92,11 @@ const playlistSlice = createSlice({
         },
         setIsFiltered: (state, action: PayloadAction<boolean>) => {
             state.isFiltered = action.payload;
-           
+
 
         },
         setNullCurrentTrack: (state) => {
-            state.currentTrack = state.nullCurrentTrack;    
+            state.currentTrack = state.nullCurrentTrack;
         },
         setStartPlaylist: (state, action: PayloadAction<{ tracks: TrackType[] }>) => {
             state.startPlaylist = action.payload.tracks;
@@ -114,7 +114,7 @@ const playlistSlice = createSlice({
         setPlaylist: (state) => {
             const playlist = state.isShuffle ? state.shuffledPlaylist : state.playlist;
             state.playlist = playlist;
-         },
+        },
 
         //setPlaylist: (state, action: PayloadAction<{ tracks: TrackType[] }>) => {
         //    state.playlist = action.payload.tracks;
@@ -122,17 +122,17 @@ const playlistSlice = createSlice({
         //    state.playlist = playlist;
         // },
 
-       /* setFilters: (state, action: PayloadAction<{ author?: string[], searchValue?: string }>) => {
-            state.filterOptions = {
-                author: action.payload.author || state.filterOptions.author,
-                searchValue: action.payload.searchValue || state.filterOptions.searchValue,
-            };
-            state.playlist = state.startPlaylist.filter((item) => {
-                const hasAuthors = state.filterOptions.author.length !== 0;
-                const playlist = hasAuthors ? state.filterOptions.author.includes(item.author) : true;
-                return playlist;
-            });
-        },*/
+        /* setFilters: (state, action: PayloadAction<{ author?: string[], searchValue?: string }>) => {
+             state.filterOptions = {
+                 author: action.payload.author || state.filterOptions.author,
+                 searchValue: action.payload.searchValue || state.filterOptions.searchValue,
+             };
+             state.playlist = state.startPlaylist.filter((item) => {
+                 const hasAuthors = state.filterOptions.author.length !== 0;
+                 const playlist = hasAuthors ? state.filterOptions.author.includes(item.author) : true;
+                 return playlist;
+             });
+         },*/
 
         setFilters: (state, action: PayloadAction<{ clickFilter?: string[], searchValue?: string }>) => {
             state.filterOptions = {
@@ -141,9 +141,19 @@ const playlistSlice = createSlice({
             };
             state.playlist = state.startPlaylist.filter((item) => {
                 const hasClickFilters = state.filterOptions.clickFilter.length !== 0;
-                const playlist = hasClickFilters ? state.filterOptions.clickFilter.includes(item.author || item.genre || item.release_date) : true;
-                return playlist;
+
+                const filterValue = () => {
+                    if (state.filterOptions.searchValue === "author") return item.author;
+                    if (state.filterOptions.searchValue === "genre") return item.genre.join(' ');
+                    if (state.filterOptions.searchValue === "release") return item.release_date;
+                };
+                const result = filterValue();
+                if (result !== undefined) {
+                    const playlist = hasClickFilters ? state.filterOptions.clickFilter.includes(result) : true;
+                    return playlist;
+                }
             });
+            //лучше переписать clickFilter на filterList (более понятно)
         },
 
 

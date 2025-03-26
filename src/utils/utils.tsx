@@ -26,7 +26,7 @@ export function getUniqueValues({ value, tracks }: Props) {
         return Array.from(new Set(tracks.map((track) => track.author)));
     } else if (value === "genre") {
         // dispatch(setFilters({searchValue: "genre"}));
-        return Array.from(new Set(tracks.map((track) => track.genre)));
+        return Array.from(new Set(tracks.map((track) => track.genre.join(' '))));
     } else {
         // dispatch(setFilters({searchValue: "release_date"}));
         return Array.from(new Set(order));

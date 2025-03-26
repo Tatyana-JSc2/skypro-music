@@ -6,7 +6,7 @@ import styles from "./Filter.module.css";
 //import classNames from 'classnames';
 import { TrackType } from "@/types/types";
 import { getUniqueValues } from "@/utils/utils";
-import { /*setPlaylist */ } from "@/store/features/playlistSlice";
+import { setPlaylist, setFilters} from "@/store/features/playlistSlice";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 
 
@@ -17,11 +17,15 @@ type Props = {
 //export function Filter(tracks: TrackType []) {
 export const Filter = ({ tracks }: Props) => {
     const [filterValue, setFilterValue] = useState<null | string>(null);
-    //const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
     const changeFilter = (value: string) => {
         setFilterValue((prev) => prev === value ? null : value);
-        //dispatch(setPlaylist({ tracks }));       
+        dispatch(setFilters({searchValue: value}));
+        dispatch(setFilters({ clickFilter: [] }));
+        alert (`Вы кликнули на: ${value}`);
+        ///dispatch(setPlaylist()); 
+           
     }
 
 
